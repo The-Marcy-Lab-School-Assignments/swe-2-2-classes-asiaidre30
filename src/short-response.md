@@ -16,7 +16,7 @@ With OOP in JavaScript, it's possible to use factory functions to achieve encaps
 How would you explain to a budding developer what the drawbacks of using factory functions are and why it is better to use classes instead?
 
 ## Response 1
-
+Factory functions can create similar objects, but they often duplicate methods in memory, which becomes inefficient as your codebase grows. They also make it harder to organize shared behavior and maintain a clear structure. Classes solve these issues by storing shared methods on the prototype and giving your code a more predicatable, organized model. This is why. classes are usually the better option for larger or long-term projects.
 
 ---
 
@@ -25,17 +25,14 @@ How would you explain to a budding developer what the drawbacks of using factory
 Explain what factors you should consider when deciding to make a property/method private? Provide an example to support your response.
 
 ## Response 2
-
-
----
+A property of method should be private when it  holds information that shouldn't be changed directly by outside code. Privacy protects the object's internal state and prevents accidental misuse. For example, a BankAccount class might keep the balance private so updates can only happen through controlled methods like deposit() or withdraw().
 
 ## Prompt 3
 
 Explain what factors you should consider when deciding to make a property/method static? Provide an example to support your response.
 
 ## Response 3
-
----
+You should make a property or method static when it belongs to the class itself rather than any specific instance. Static members are useful for shared utilities or data that every instance should access the same way. For example, a User class might have a static method validateEmail() because the validation logic doesn't depend on any individual user object.
 
 ## Prompt 4
 
@@ -55,4 +52,12 @@ class Vault {
 
 Identify what the mistake is, explain why it is a problem, and suggest a way to fix it.
 
-## Response 4
+The mistake is that the #secrets property is defined once on the class itself instead of inside the constructor, which means every Vault object would share the same secret list. This is a problem because each instance should have its own seperate data. To fix it move #secrets = [] into a constructor so each new vault gets its own private way.
+
+```js 
+class Vault {
+  #secrets;
+  constructor() {
+    this.#secrets = [];
+  }
+}
