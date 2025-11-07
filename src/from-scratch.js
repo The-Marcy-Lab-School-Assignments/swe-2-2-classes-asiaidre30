@@ -16,11 +16,11 @@ class Rectangle {
 }
 
 class Vehicle {
+  passengers = [];
   constructor(type, capacity, color = 'black') {
     this.type = type;
-    this.capacity = capacity
-    this.color = color
-    this.passengers = [];
+    this.capacity = capacity;
+    this.color = color;
   }
 
   paint(newColor) {
@@ -28,9 +28,9 @@ class Vehicle {
     return this.color;
   }
   addPassenger(passenger) {
-    if (this.passenger.length < this.capacity) {
-      this.passenger.push(passenger);
-      return this.passenger.length;
+    if (this.passengers.length < this.capacity) {
+      this.passengers.push(passenger);
+      return this.passengers.length;
     } else {
       return -1;
     }
@@ -60,27 +60,33 @@ class PasswordManager {
 
 
 class TodoList {
+  #items = [];
+
   constructor(title) {
     this.title = title;
-    this.item = [];
   }
+
   addItem(description) {
-    this.item.push(description);
-    return this.item.length;
+    this.#items.push(description);
+    return this.#items.length;
   }
   removeItem(description) {
-    const index = this.item.indexOf(description);
+    const index = this.#items.indexOf(description);
 
     if (index === -1) {
       return null;
     }
-
-    getItems()
-    return [...this.items];
+    this.#items.splice(index, 1);
+    return description;
+  }
+  // .splice(index to modify, 0 means to add
+  // /1 means to replace, what you're adding or replacing)
+  getItems() {
+    return [...this.#items];
   }
 
 
-}
+};
 
 class BankAccount {
   static = 0;
@@ -110,6 +116,7 @@ class BankAccount {
   }
 
 }
+// to be continued
 
 module.exports = {
   Rectangle,
